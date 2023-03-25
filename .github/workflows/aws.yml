@@ -50,7 +50,7 @@ jobs:
         env: [Acc, Tst, Prd]
         region: [eu-west-1, us-east-1, us-west-2]
         blockchain: [aptos, avalx, polygon, gepry]
-        network: [ {mnet: mainnet, tnet: testnet} ]
+        network: [ mnet, tnet ]
     steps:
       - name: Build Mainnet
         run: echo ${{ matrix.env.region.blockchain.network }}
