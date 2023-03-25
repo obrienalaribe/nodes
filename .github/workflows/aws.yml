@@ -5,7 +5,15 @@ on:
     branches: [ "main" ]
   
   workflow_dispatch:
-
+ 
+  workflow_call:
+    inputs:
+      config-path:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
 env:
   AWS_REGION: us-east-1                  
 
@@ -32,3 +40,8 @@ jobs:
 
     - name: Test
       run: aws s3 ls
+  
+    - uses: actions/labeler@v4
+      with:
+        repo-token: ${{ secrets.token }}
+        configuration-path: ${{ inputs.config-path }}
