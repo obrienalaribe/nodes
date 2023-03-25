@@ -47,10 +47,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ubuntu-16.04, ubuntu-latest]
-        compiler: [ {cpp: g++, c: gcc}, {cpp: g++-8, c: gcc-8}, {cpp: clang++, c: clang} ]
+        env: [Acc, Tst, Prd]
+        region: [eu-west-1, us-east-1, us-west-2]
+        blockchain: [aptos, avalx, polygon, gepry]
+        network: [ {mnet: mainnet, tnet: testnet} ]
     steps:
-      - name: Compile with C++ compiler
-        run: echo ${{ matrix.compiler.cpp }}
-      - name: Compile with C compiler
-        run: echo ${{ matrix.compiler.c }} 
+      - name: Build Mainnet
+        run: echo ${{ matrix.env.region.blockchain.network }}
+      - name: Build Testnet
+        run: echo ${{ matrix.env.region.blockchain.network }} 
